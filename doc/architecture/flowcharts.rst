@@ -123,7 +123,7 @@ MoveIt2 Trajectory Execution
 This flow shows the complete path from a MoveIt2 plan request to physical robot
 motion:
 
-.. image:: _static/images/moveIt2_trajectory_flow.png
+.. image:: /_static/images/moveIt2_trajectory_flow.png
    :alt: MoveIt2 Trajectory Execution
    :width: 100%
    :align: center 
