@@ -1,0 +1,1567 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Isaac Sim Manipulator Example &#8212; WMX ROS2 Documentation 1.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8dc496ed" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/isaac_manipulator';</script>
+    <link rel="icon" href="../_static/movensys_logo.png"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Intel Manipulator Integration" href="intel_manipulator.html" />
+    <link rel="prev" title="Example Applications" href="examples.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <meta name="docbuild:last-update" content="Feb 20, 2026"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/movensys_logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/movensys_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">WMX ROS2 Documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/movensys/wmx_ros2_doc" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/movensys/wmx_ros2_doc" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><div class="sidebar-toc-header">
+  <p class="sidebar-toc-title">Table of Contents</p>
+  <p class="sidebar-toc-subtitle">Contents</p>
+</div></div>
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/system_requirements.html">System Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/system_requirements.html#operating-system">Operating System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/system_requirements.html#ros2-distribution">ROS2 Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/system_requirements.html#hardware-requirements">Hardware Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/system_requirements.html#supported-models-platforms">Supported Models &amp; Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/install_ros2.html">Install ROS2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/install_ros2.html#ros2-humble-ubuntu-22-04">ROS2 Humble (Ubuntu 22.04)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/install_ros2.html#ros2-jazzy-ubuntu-24-04">ROS2 Jazzy (Ubuntu 24.04)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/install_ros2.html#verify-ros2">Verify ROS2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/install_dependencies.html">Install Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/install_dependencies.html#verify-lmx-installation">Verify LMX Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/create_workspace.html">Create Workspace and Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configure_environment.html">Configure Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configure_environment.html#verify-installation">Verify Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/mock_hardware.html">Launch with Mock Hardware</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/mock_hardware.html#test-the-general-node-standalone">Test the General Node (Standalone)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/mock_hardware.html#publish-simulated-joint-states">Publish Simulated Joint States</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/mock_hardware.html#simulation-environments">Simulation Environments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/physical_hardware.html">Launch with Physical Hardware</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/physical_hardware.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/physical_hardware.html#ethercat-wiring">EtherCAT Wiring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/physical_hardware.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/physical_hardware.html#launch-commands">Launch Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/physical_hardware.html#startup-sequence">Startup Sequence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/physical_hardware.html#verifying-the-connection">Verifying the Connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/physical_hardware.html#gripper-control">Gripper Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/physical_hardware.html#shutdown">Shutdown</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/packages.html">Packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../packages/wmx_ros2_message.html">wmx_ros2_message</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_message.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_message.html#package-structure">Package Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_message.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_message.html#message-definitions">Message Definitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_message.html#axispose">AxisPose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_message.html#axisvelocity">AxisVelocity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_message.html#axisstate">AxisState</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_message.html#service-definitions">Service Definitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_message.html#setengine">SetEngine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_message.html#setaxis">SetAxis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_message.html#setaxisgearratio">SetAxisGearRatio</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_message.html#building-the-package">Building the Package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/wmx_ros2_package.html">wmx_ros2_package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#package-structure">Package Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#package-dependencies-package-xml">Package Dependencies (package.xml)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#cmake-dependencies-find-package">CMake Dependencies (find_package)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx3-libraries-external">WMX3 Libraries (External)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#nodes">Nodes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#manipulator-state">manipulator_state</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#follow-joint-trajectory-server">follow_joint_trajectory_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx-ros2-general-node">wmx_ros2_general_node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#diff-drive-controller-disabled">diff_drive_controller (Disabled)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#example-application">Example Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx-ros2-general-example">wmx_ros2_general_example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#launch-files">Launch Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx-ros2-general-launch-py">wmx_ros2_general.launch.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx-ros2-intel-manipulator-cr3a-launch-py">wmx_ros2_intel_manipulator_cr3a.launch.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx-ros2-orin-manipulator-cr3a-launch-py">wmx_ros2_orin_manipulator_cr3a.launch.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx-ros2-diff-drive-controller-launch-py">wmx_ros2_diff_drive_controller.launch.py</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#configuration-files">Configuration Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#intel-manipulator-config-cr3a-yaml">intel_manipulator_config_cr3a.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#orin-manipulator-config-cr3a-yaml">orin_manipulator_config_cr3a.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#diff-drive-controller-config-yaml">diff_drive_controller_config.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx3-parameter-xml-files">WMX3 Parameter XML Files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#building-the-package">Building the Package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../integration/integration.html">Integration Scenarios</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integration/moveit2_integration.html">MoveIt2 Motion Planning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integration/moveit2_integration.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/moveit2_integration.html#architecture">Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/moveit2_integration.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/moveit2_integration.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/moveit2_integration.html#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/moveit2_integration.html#trajectory-execution-details">Trajectory Execution Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../integration/cumotion_integration.html">Isaac cuMotion Accelerated Planning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integration/cumotion_integration.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/cumotion_integration.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/cumotion_integration.html#integration">Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../integration/custom_planner.html">Custom Planner Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_planner.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_planner.html#replacing-the-default-planner">Replacing the Default Planner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_planner.html#interface-requirements">Interface Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_planner.html#constraints-and-limitations">Constraints and Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_planner.html#python-example-custom-trajectory-generator">Python Example: Custom Trajectory Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_planner.html#standalone-axis-control">Standalone Axis Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_planner.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../integration/custom_application.html">Building Custom Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#available-interfaces">Available Interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#python-example-send-a-trajectory">Python Example: Send a Trajectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#c-example-send-a-trajectory">C++ Example: Send a Trajectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#python-example-read-robot-state">Python Example: Read Robot State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#python-example-monitor-axis-state-and-control-gripper">Python Example: Monitor Axis State and Control Gripper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#using-with-moveit2-python-api">Using with MoveIt2 Python API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#direct-axis-control">Direct Axis Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#adapting-for-different-6-dof-robots">Adapting for Different 6-DOF Robots</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../integration/custom_application.html#configuration-files-to-create-or-modify">Configuration files to create or modify</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../integration/custom_application.html#steps-to-adapt">Steps to adapt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../integration/custom_application.html#what-stays-the-same">What stays the same</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/architecture.html">Architecture &amp; Design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/system_overview.html">System Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/system_overview.html#architecture-diagram">Architecture Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/system_overview.html#package-overview">Package Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/system_overview.html#wmx-ros2-message">wmx_ros2_message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/system_overview.html#wmx-ros2-package">wmx_ros2_package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/system_overview.html#node-roles">Node Roles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/system_overview.html#manipulator-state">manipulator_state</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/system_overview.html#follow-joint-trajectory-server">follow_joint_trajectory_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/system_overview.html#wmx-ros2-general-node">wmx_ros2_general_node</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/system_overview.html#communication-protocols">Communication Protocols</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/system_overview.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/communication.html">Communication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/communication.html#ros2-topics">ROS2 Topics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/communication.html#published-topics">Published Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/communication.html#subscribed-topics">Subscribed Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/communication.html#ros2-services">ROS2 Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/communication.html#ros2-actions">ROS2 Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/communication.html#wmx3-hardware-communication">WMX3 Hardware Communication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/communication.html#device-initialization">Device Initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/communication.html#wmx3-api-libraries">WMX3 API Libraries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/communication.html#ethercat-communication-cycle">EtherCAT Communication Cycle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/communication.html#gripper-i-o">Gripper I/O</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/flowcharts.html">Flowcharts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/flowcharts.html#launch-sequence">Launch Sequence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#manipulator-launch-intel-orin">Manipulator Launch (Intel / Orin)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#general-launch">General Launch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#diff-drive-launch">Diff Drive Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/flowcharts.html#motion-execution-flow">Motion Execution Flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#moveit2-trajectory-execution">MoveIt2 Trajectory Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#direct-axis-control-flow">Direct Axis Control Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/flowcharts.html#error-handling-flow">Error Handling Flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#wmx3-device-creation-errors">WMX3 Device Creation Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#trajectory-execution-errors">Trajectory Execution Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#communication-errors">Communication Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#servo-and-axis-control-errors">Servo and Axis Control Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#diff-drive-controller-safety">Diff Drive Controller Safety</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../performance/performance.html">Performance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../performance/performance.html#non-functional-requirements">Non-Functional Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../performance/performance.html#benchmarks">Benchmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../performance/performance.html#test-environment">Test Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../performance/performance.html#measurement-commands">Measurement Commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/ros2_services.html">ROS2 Services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_services.html#custom-service-types">Custom Service Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_services.html#engine-management-services">Engine Management Services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-engine-set-device">/wmx/engine/set_device</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-engine-set-comm">/wmx/engine/set_comm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-engine-get-status">/wmx/engine/get_status</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_services.html#axis-control-services">Axis Control Services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-axis-set-on">/wmx/axis/set_on</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-axis-clear-alarm">/wmx/axis/clear_alarm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-axis-set-mode">/wmx/axis/set_mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-axis-set-polarity">/wmx/axis/set_polarity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-axis-set-gear-ratio">/wmx/axis/set_gear_ratio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-axis-homing">/wmx/axis/homing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_services.html#gripper-service">Gripper Service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-set-gripper">/wmx/set_gripper</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_services.html#service-call-workflow">Service Call Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_services.html#error-handling">Error Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_services.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/ros2_topics.html">ROS2 Topics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_topics.html#custom-message-types">Custom Message Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_topics.html#published-topics">Published Topics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#joint-state-feedback">Joint State Feedback</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#simulator-integration-topics">Simulator Integration Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#axis-state-monitoring">Axis State Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_topics.html#subscribed-topics-motion-commands">Subscribed Topics (Motion Commands)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#wmx-axis-velocity">/wmx/axis/velocity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#wmx-axis-position">/wmx/axis/position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#wmx-axis-position-relative">/wmx/axis/position/relative</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_topics.html#differential-drive-topics-optional">Differential Drive Topics (Optional)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#cmd-vel-subscribed">/cmd_vel (Subscribed)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#cmd-vel-check-published">/cmd_vel_check (Published)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#velocity-controller-commands-published">/velocity_controller/commands (Published)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#odom-enc-published">/odom_enc (Published)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_topics.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/ros2_actions.html">ROS2 Actions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_actions.html#followjointtrajectory">FollowJointTrajectory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_actions.html#goal">Goal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_actions.html#result">Result</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_actions.html#feedback">Feedback</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_actions.html#execution-details">Execution Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_actions.html#example-usage">Example Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_actions.html#moveit2-integration">MoveIt2 Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_actions.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="examples.html">Example Applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="examples.html#overview">Overview</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="examples.html#prerequisites">Prerequisites</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Isaac Sim Manipulator Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#architecture">Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-it-connects-to-wmx-ros2">How It Connects to WMX ROS2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="intel_manipulator.html">Intel Manipulator Integration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="intel_manipulator.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intel_manipulator.html#architecture">Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intel_manipulator.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intel_manipulator.html#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intel_manipulator.html#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intel_manipulator.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="intel_manipulator.html#how-it-connects-to-wmx-ros2">How It Connects to WMX ROS2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment/deployment.html">Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deployment/deployment.html#source-build">Source Build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../deployment/deployment.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deployment/deployment.html#clone-and-build">Clone and Build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deployment/deployment.html#verify">Verify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deployment/deployment.html#rebuilding">Rebuilding</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../deployment/deployment.html#debian-package-install">Debian Package Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deployment/deployment.html#docker">Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#device-creation-failures">Device Creation Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#ethercat-scan-failures">EtherCAT Scan Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#communication-start-failures">Communication Start Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#joint-states-all-zero">Joint States All Zero</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#servo-alarm-errors">Servo Alarm Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#trajectory-execution-failures">Trajectory Execution Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#gripper-not-responding">Gripper Not Responding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#nodes-not-found">Nodes Not Found</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#build-errors">Build Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Us</a></li>
+</ul>
+
+  </div>
+</nav>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var navItems = document.querySelectorAll(".bd-docs-nav li");
+  navItems.forEach(function(li) {
+    var subList = li.querySelector(":scope > ul");
+    if (subList) {
+      var toggle = document.createElement("span");
+      toggle.className = "toc-toggle";
+      var isCurrent = li.classList.contains("current");
+      toggle.textContent = isCurrent ? "−" : "+";
+      if (!isCurrent) {
+        subList.classList.add("toc-collapsed");
+      }
+      toggle.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        subList.classList.toggle("toc-collapsed");
+        toggle.textContent = subList.classList.contains("toc-collapsed") ? "+" : "−";
+      });
+      li.style.position = "relative";
+      var link = li.querySelector(":scope > a");
+      if (link) {
+        link.after(toggle);
+      }
+    }
+  });
+});
+</script></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="examples.html" class="nav-link">Example Applications</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Isaac Sim Manipulator Example</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="isaac-sim-manipulator-example">
+<h1>Isaac Sim Manipulator Example<a class="headerlink" href="#isaac-sim-manipulator-example" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>The <strong>movensys_isaac_manipulator</strong> workspace is a standalone ROS 2 Humble
+application that integrates NVIDIA Isaac ROS with MoveIt2 for GPU-accelerated
+manipulator control. It provides a progressive 4-stage workflow that takes the
+Dobot CR3A from basic trajectory validation through vision-guided pick-and-place
+with real-time obstacle avoidance.</p>
+<p>The workspace is located at:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/</span><span class="n">manipulator_ros_ws</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">movensys_isaac_manipulator</span><span class="o">/</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table" id="id1">
+<caption><span class="caption-text">Stage Summary</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 10.0%" />
+<col style="width: 25.0%" />
+<col style="width: 35.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Stage</p></th>
+<th class="head"><p>Capability</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Key NVIDIA Component</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Basic Trajectory</p></td>
+<td><p>Cartesian/joint motion with MoveIt2 OMPL planner</p></td>
+<td><p>None (baseline)</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>cuMotion Planning</p></td>
+<td><p>GPU-accelerated motion planning replaces OMPL</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">isaac_ros_cumotion</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>AprilTag Pick &amp; Place</p></td>
+<td><p>Vision-based detection and autonomous manipulation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">isaac_ros_apriltag</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>NvBlox Obstacle Avoidance</p></td>
+<td><p>3D volumetric mapping for collision-free planning</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">isaac_ros_nvblox</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Each stage can run in three environments:</p>
+<ul class="simple">
+<li><p><strong>Simulation</strong> – Isaac Sim provides both the physics engine and sensor
+simulation. The <code class="docutils literal notranslate"><span class="pre">simulation_action</span></code> bridge node forwards trajectories from
+MoveIt2 to Isaac Sim via the <code class="docutils literal notranslate"><span class="pre">/joint_command</span></code> topic.</p></li>
+<li><p><strong>Hardware-in-the-Loop (HiL)</strong> – Isaac Sim acts as a digital twin while the
+real robot is driven by WMX ROS2 over EtherCAT. Both systems share the same
+<code class="docutils literal notranslate"><span class="pre">/joint_states</span></code> topic.</p></li>
+<li><p><strong>Real Robot</strong> – No simulator. WMX ROS2 drives the physical robot directly
+and MoveIt2/cuMotion plans in real time.</p></li>
+</ul>
+</section>
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">#</a></h2>
+<section id="packages">
+<h3>Packages<a class="headerlink" href="#packages" title="Link to this heading">#</a></h3>
+<p>The workspace contains three ROS 2 packages:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 35.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Package</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">movensys_manipulator_description</span></code></p></td>
+<td><p>URDF/Xacro robot model for the Dobot CR3A with table, stand, bracket,
+gripper, and picker links. Provides STL mesh assets and RViz launch files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">movensys_manipulator_moveit_config</span></code></p></td>
+<td><p>MoveIt2 configuration: SRDF (planning group <code class="docutils literal notranslate"><span class="pre">movensys_manipulator_arm</span></code>
+as chain <code class="docutils literal notranslate"><span class="pre">Link0</span></code> to <code class="docutils literal notranslate"><span class="pre">Link6</span></code>), joint limits (3.0 rad/s velocity,
+3.0 rad/s<sup>2</sup> acceleration for all joints), KDL kinematics solver,
+OMPL/CHOMP/Pilz planners, and controller configuration.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">movensys_manipulator_isaac_config</span></code></p></td>
+<td><p>Scenario executables, launch files, NVIDIA Isaac ROS integration configs,
+camera configs, and the <code class="docutils literal notranslate"><span class="pre">MoveIt2Client</span></code> C++ library.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="kinematic-chain">
+<h3>Kinematic Chain<a class="headerlink" href="#kinematic-chain" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">world_manipulator</span> <span class="o">-&gt;</span> <span class="n">table</span> <span class="o">-&gt;</span> <span class="n">stand</span> <span class="o">-&gt;</span> <span class="n">Link0</span>
+  <span class="o">-&gt;</span> <span class="n">joint1</span> <span class="p">(</span><span class="n">revolute</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Link1</span>
+    <span class="o">-&gt;</span> <span class="n">joint2</span> <span class="p">(</span><span class="n">revolute</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Link2</span>
+      <span class="o">-&gt;</span> <span class="n">joint3</span> <span class="p">(</span><span class="n">revolute</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Link3</span>
+        <span class="o">-&gt;</span> <span class="n">joint4</span> <span class="p">(</span><span class="n">revolute</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Link4</span>
+          <span class="o">-&gt;</span> <span class="n">joint5</span> <span class="p">(</span><span class="n">revolute</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Link5</span>
+            <span class="o">-&gt;</span> <span class="n">joint6</span> <span class="p">(</span><span class="n">revolute</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Link6</span>
+              <span class="o">-&gt;</span> <span class="n">bracket</span> <span class="p">(</span><span class="n">fixed</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">gripper</span> <span class="p">(</span><span class="n">fixed</span><span class="p">)</span>
+                <span class="o">-&gt;</span> <span class="n">picker_1_joint</span> <span class="p">(</span><span class="n">prismatic</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">picker_1</span>
+                <span class="o">-&gt;</span> <span class="n">picker_2_joint</span> <span class="p">(</span><span class="n">prismatic</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">picker_2</span>
+</pre></div>
+</div>
+<p>The arm group <code class="docutils literal notranslate"><span class="pre">movensys_manipulator_arm</span></code> is defined as the chain from
+<code class="docutils literal notranslate"><span class="pre">Link0</span></code> to <code class="docutils literal notranslate"><span class="pre">Link6</span></code> (6 revolute joints). The end-effector group
+<code class="docutils literal notranslate"><span class="pre">movensys_manipulator_eef</span></code> includes the <code class="docutils literal notranslate"><span class="pre">bracket</span></code> and <code class="docutils literal notranslate"><span class="pre">gripper</span></code> links.
+The gripper has two prismatic picker joints with a range of 0–0.045 m.</p>
+</section>
+<section id="source-files">
+<h3>Source Files<a class="headerlink" href="#source-files" title="Link to this heading">#</a></h3>
+<p><strong>MoveIt2 Client Library</strong> (<code class="docutils literal notranslate"><span class="pre">src/moveit2_client.cpp</span></code>, <code class="docutils literal notranslate"><span class="pre">include/moveit2_client.hpp</span></code>)</p>
+<p>A reusable C++ class wrapping <code class="docutils literal notranslate"><span class="pre">MoveGroupInterface</span></code> that provides:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">jointMovement()</span></code> – Plan and execute to a joint-space target</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">absoluteBaseEefCartesian()</span></code> – Cartesian path in base frame using
+<code class="docutils literal notranslate"><span class="pre">computeCartesianPath()</span></code> with <code class="docutils literal notranslate"><span class="pre">TimeOptimalTrajectoryGeneration</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">absoluteBaseEefJointMovement()</span></code> – IK pose target with <code class="docutils literal notranslate"><span class="pre">setPoseTarget()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">relativeBaseEefCartesian()</span></code> – Relative Cartesian move in base frame</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">relativeToolEefCartesian()</span></code> – Relative Cartesian move in tool frame (applies
+delta in end-effector coordinate system)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setGripper()</span></code> – Calls <code class="docutils literal notranslate"><span class="pre">/wmx/set_gripper</span></code> service (<code class="docutils literal notranslate"><span class="pre">std_srvs/SetBool</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lookupTF()</span></code> – Cached TF lookup via <code class="docutils literal notranslate"><span class="pre">/tf</span></code> subscription</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getCurrentEefPose()</span></code> – Current end-effector pose from MoveIt state</p></li>
+</ul>
+<p>Configurable parameters set per-scenario: <code class="docutils literal notranslate"><span class="pre">vel_scale</span></code>, <code class="docutils literal notranslate"><span class="pre">acc_scale</span></code>,
+<code class="docutils literal notranslate"><span class="pre">delay_exec</span></code>, <code class="docutils literal notranslate"><span class="pre">delay_gripper</span></code>, <code class="docutils literal notranslate"><span class="pre">max_step</span></code>, <code class="docutils literal notranslate"><span class="pre">planning_time</span></code>,
+<code class="docutils literal notranslate"><span class="pre">jump_threshold</span></code>, <code class="docutils literal notranslate"><span class="pre">timeout</span></code>, <code class="docutils literal notranslate"><span class="pre">planning_attempts</span></code>, <code class="docutils literal notranslate"><span class="pre">replan</span></code>,
+<code class="docutils literal notranslate"><span class="pre">replan_attempts</span></code>.</p>
+<p><strong>Simulation Bridge</strong> (<code class="docutils literal notranslate"><span class="pre">src/simulation_action.cpp</span></code>)</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">simulation_action</span></code> node bridges MoveIt2 and Isaac Sim in simulation mode:</p>
+<ul class="simple">
+<li><p>Creates a <code class="docutils literal notranslate"><span class="pre">FollowJointTrajectory</span></code> action server at
+<code class="docutils literal notranslate"><span class="pre">/movensys_manipulator_arm_controller/follow_joint_trajectory</span></code></p></li>
+<li><p>Subscribes to <code class="docutils literal notranslate"><span class="pre">/joint_states</span></code> (published by Isaac Sim)</p></li>
+<li><p>Publishes each trajectory point to <code class="docutils literal notranslate"><span class="pre">/joint_command</span></code> (consumed by Isaac Sim)
+with the actual inter-point time delay</p></li>
+<li><p>Provides <code class="docutils literal notranslate"><span class="pre">/wmx/set_gripper</span></code> service – sets gripper position to <code class="docutils literal notranslate"><span class="pre">0.045</span></code>
+(closed) or <code class="docutils literal notranslate"><span class="pre">0.000</span></code> (open) and publishes updated joint command</p></li>
+<li><p>Trajectory points are padded from 6 to 8 values (appending gripper state for
+<code class="docutils literal notranslate"><span class="pre">picker_1_joint</span></code> and <code class="docutils literal notranslate"><span class="pre">picker_2_joint</span></code>)</p></li>
+</ul>
+<p><strong>Scenario Executables:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">stage1and2_trajectory_cpp</span></code> (<code class="docutils literal notranslate"><span class="pre">src/stage1and2_trajectory.cpp</span></code>) –
+Demonstrates absolute/relative Cartesian, joint movement, and gripper control
+with <code class="docutils literal notranslate"><span class="pre">vel_scale=0.3</span></code>, <code class="docutils literal notranslate"><span class="pre">acc_scale=0.3</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stage3_apriltag_cpp</span></code> (<code class="docutils literal notranslate"><span class="pre">src/stage3_apriltag.cpp</span></code>) –
+AprilTag-guided pick-and-place for 4 colored objects (green, blue, grey, red)
+using <code class="docutils literal notranslate"><span class="pre">tag36h11</span></code> family markers. Uses visual servoing loop to converge on
+tag within tolerance (30 mm position, 50 mrad orientation). Runs at
+<code class="docutils literal notranslate"><span class="pre">vel_scale=1.0</span></code>, <code class="docutils literal notranslate"><span class="pre">acc_scale=1.0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stage4_nvblox_cpp</span></code> (<code class="docutils literal notranslate"><span class="pre">src/stage4_nvblox.cpp</span></code>) –
+Moves between two poses with obstacle-aware planning via cuMotion + NvBlox ESDF</p></li>
+</ul>
+</section>
+<section id="data-flow-simulation-mode">
+<h3>Data Flow (Simulation Mode)<a class="headerlink" href="#data-flow-simulation-mode" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MoveIt2</span> <span class="p">(</span><span class="n">OMPL</span><span class="o">/</span><span class="n">cuMotion</span><span class="p">)</span>
+  <span class="o">|</span>
+  <span class="o">|</span> <span class="n">FollowJointTrajectory</span> <span class="n">action</span>
+  <span class="n">v</span>
+<span class="n">simulation_action</span>
+  <span class="o">|</span>
+  <span class="o">|</span> <span class="o">/</span><span class="n">joint_command</span> <span class="p">(</span><span class="n">sensor_msgs</span><span class="o">/</span><span class="n">JointState</span><span class="p">)</span>
+  <span class="n">v</span>
+<span class="n">Isaac</span> <span class="n">Sim</span>
+  <span class="o">|</span>
+  <span class="o">|</span> <span class="o">/</span><span class="n">joint_states</span> <span class="p">(</span><span class="n">sensor_msgs</span><span class="o">/</span><span class="n">JointState</span><span class="p">)</span>
+  <span class="n">v</span>
+<span class="n">robot_state_publisher</span> <span class="o">-&gt;</span> <span class="n">RViz2</span>
+</pre></div>
+</div>
+</section>
+<section id="data-flow-hil-real-robot">
+<h3>Data Flow (HiL / Real Robot)<a class="headerlink" href="#data-flow-hil-real-robot" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MoveIt2</span> <span class="p">(</span><span class="n">OMPL</span><span class="o">/</span><span class="n">cuMotion</span><span class="p">)</span>
+  <span class="o">|</span>
+  <span class="o">|</span> <span class="n">FollowJointTrajectory</span> <span class="n">action</span>
+  <span class="n">v</span>
+<span class="n">WMX</span> <span class="n">ROS2</span> <span class="n">follow_joint_trajectory_server</span>
+  <span class="o">|</span>
+  <span class="o">|</span> <span class="n">WMX3</span> <span class="n">CSpline</span> <span class="o">-&gt;</span> <span class="n">EtherCAT</span>
+  <span class="n">v</span>
+<span class="n">Physical</span> <span class="n">Robot</span> <span class="n">Servos</span>
+  <span class="o">|</span>
+  <span class="o">|</span> <span class="n">Encoder</span> <span class="n">feedback</span> <span class="n">via</span> <span class="n">WMX3</span>
+  <span class="n">v</span>
+<span class="n">WMX</span> <span class="n">ROS2</span> <span class="o">/</span><span class="n">joint_states</span>
+  <span class="o">|</span>
+  <span class="o">+-&gt;</span> <span class="n">robot_state_publisher</span> <span class="o">-&gt;</span> <span class="n">RViz2</span>
+  <span class="o">+-&gt;</span> <span class="n">Isaac</span> <span class="n">Sim</span> <span class="p">(</span><span class="n">digital</span> <span class="n">twin</span> <span class="n">via</span> <span class="o">/</span><span class="n">isaacsim</span><span class="o">/</span><span class="n">joint_command</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<section id="hardware">
+<h3>Hardware<a class="headerlink" href="#hardware" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>NVIDIA GPU with CUDA support (RTX 5070/5090 tested for desktop,
+Jetson Orin for embedded)</p></li>
+<li><p>Stage 4 is recommended to run on <strong>a GPU with 16 GB</strong> or more</p></li>
+<li><p>Intel RealSense depth camera (for Stage 3 real robot and Stage 4)</p></li>
+<li><p>Dobot CR3A manipulator with WMX3 EtherCAT drives (for HiL/Real modes)</p></li>
+</ul>
+</section>
+<section id="software">
+<h3>Software<a class="headerlink" href="#software" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Ubuntu 22.04.5 LTS (Jammy)</p></li>
+<li><p>ROS 2 Humble</p></li>
+<li><p>NVIDIA Driver (570-open for RTX 5070, 580-open for RTX 5090)</p></li>
+<li><p>Docker with NVIDIA Container Toolkit</p></li>
+<li><p>Git LFS</p></li>
+<li><p>Isaac Sim 5.0.0</p></li>
+<li><p>Isaac ROS release-3.2 repositories (cloned by <code class="docutils literal notranslate"><span class="pre">setup.sh</span></code>)</p></li>
+<li><p>CycloneDDS middleware (<code class="docutils literal notranslate"><span class="pre">rmw_cyclonedds_cpp</span></code>)</p></li>
+<li><p>3D USD assets from <code class="docutils literal notranslate"><span class="pre">robotics_isaac_sim</span></code> repository</p></li>
+</ul>
+<p>For HiL and Real Robot modes, the core WMX ROS2 packages must be built and
+the WMX3 runtime (LMX) installed (see <a class="reference internal" href="../getting_started/index.html"><span class="doc">Getting Started</span></a>).</p>
+</section>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<section id="step-1-environment-variables">
+<h3>Step 1: Environment Variables<a class="headerlink" href="#step-1-environment-variables" title="Link to this heading">#</a></h3>
+<p>Add to <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">70</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">HOST_USER_UID</span><span class="o">=</span><span class="m">1000</span><span class="w">        </span><span class="c1"># replace with: id -u</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">HOST_USER_GID</span><span class="o">=</span><span class="m">1000</span><span class="w">        </span><span class="c1"># replace with: id -g</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">RMW_IMPLEMENTATION</span><span class="o">=</span>rmw_cyclonedds_cpp
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">ISAAC_ROS_WS</span><span class="o">=</span>~/workspaces/isaac_ros-dev
+<span class="nb">export</span><span class="w"> </span><span class="nv">MANIPULATOR_ROS_WS</span><span class="o">=</span>~/workspaces/movensys_manipulator_ws
+
+<span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
+<span class="nb">source</span><span class="w"> </span>~/workspaces/movensys_manipulator_ws/install/setup.bash
+</pre></div>
+</div>
+<p>Then reload:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+</section>
+<section id="step-2-clone-repository">
+<h3>Step 2: Clone Repository<a class="headerlink" href="#step-2-clone-repository" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">MANIPULATOR_ROS_WS</span><span class="si">}</span>/src
+<span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">MANIPULATOR_ROS_WS</span><span class="si">}</span>/src
+git<span class="w"> </span>clone<span class="w"> </span>git@bitbucket.org:mvs_app/movensys_isaac_manipulator.git
+</pre></div>
+</div>
+</section>
+<section id="step-3-run-setup-script">
+<h3>Step 3: Run Setup Script<a class="headerlink" href="#step-3-run-setup-script" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">setup.sh</span></code> script performs the following:</p>
+<ul class="simple">
+<li><p>Configures CycloneDDS network buffer sizes (26 MB for rmem/wmem)</p></li>
+<li><p>Installs ROS 2 dependencies (MoveIt2, ros2_control, CycloneDDS, etc.)</p></li>
+<li><p>Clones Isaac ROS repositories (<code class="docutils literal notranslate"><span class="pre">isaac_ros_common</span></code>, <code class="docutils literal notranslate"><span class="pre">isaac_manipulator</span></code>,
+<code class="docutils literal notranslate"><span class="pre">isaac_ros_nvblox</span></code>, <code class="docutils literal notranslate"><span class="pre">ros2_robotiq_gripper</span></code>, <code class="docutils literal notranslate"><span class="pre">serial</span></code>) into
+<code class="docutils literal notranslate"><span class="pre">${ISAAC_ROS_WS}/src/</span></code></p></li>
+<li><p>Downloads NGC assets for AprilTag and NvBlox</p></li>
+<li><p>Configures RealSense support in Isaac ROS common</p></li>
+<li><p>Patches <code class="docutils literal notranslate"><span class="pre">isaac_manipulator_pick_and_place</span></code> with revised launch/CMake files</p></li>
+<li><p>Launches the Isaac ROS development container via <code class="docutils literal notranslate"><span class="pre">run_dev.sh</span></code></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">MANIPULATOR_ROS_WS</span><span class="si">}</span>/src/movensys_isaac_manipulator
+sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>setup.sh
+./setup.sh
+</pre></div>
+</div>
+</section>
+<section id="step-4-build-docker-container">
+<h3>Step 4: Build Docker Container<a class="headerlink" href="#step-4-build-docker-container" title="Link to this heading">#</a></h3>
+<p>Two Docker Compose files are provided:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Base Image</p></th>
+<th class="head"><p>Platform</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">docker/manipulator_desktop.yaml</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">isaac_ros_dev-x86_64</span></code></p></td>
+<td><p>Desktop GPU (RTX series)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">docker/manipulator_mic.yaml</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">isaac_ros_dev-aarch64</span></code></p></td>
+<td><p>NVIDIA Jetson / MIC-713 / MIC-733ao</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For <strong>Desktop</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">MANIPULATOR_ROS_WS</span><span class="si">}</span>/src/movensys_isaac_manipulator/docker
+docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>manipulator_desktop.yaml<span class="w"> </span>build
+docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>manipulator_desktop.yaml<span class="w"> </span>up<span class="w"> </span>-d
+</pre></div>
+</div>
+<p>For <strong>MIC / Jetson</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">MANIPULATOR_ROS_WS</span><span class="si">}</span>/src/movensys_isaac_manipulator/docker
+docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>manipulator_mic.yaml<span class="w"> </span>build
+docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>manipulator_mic.yaml<span class="w"> </span>up<span class="w"> </span>-d
+</pre></div>
+</div>
+<p>The container startup command automatically builds all Isaac ROS packages and
+the <code class="docutils literal notranslate"><span class="pre">movensys_manipulator</span></code> packages inside the container. Monitor the build:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>movensys_isaac_manipulator_container
+</pre></div>
+</div>
+<p>Wait for <code class="docutils literal notranslate"><span class="pre">======</span> <span class="pre">Build</span> <span class="pre">Terminated</span> <span class="pre">=======</span></code> to appear.</p>
+</section>
+<section id="step-5-build-host-workspace">
+<h3>Step 5: Build Host Workspace<a class="headerlink" href="#step-5-build-host-workspace" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">MANIPULATOR_ROS_WS</span><span class="si">}</span>
+colcon<span class="w"> </span>build
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+</section>
+<section id="step-6-download-3d-assets">
+<h3>Step 6: Download 3D Assets<a class="headerlink" href="#step-6-download-3d-assets" title="Link to this heading">#</a></h3>
+<p>Clone the Isaac Sim USD files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@bitbucket.org:mvs_app/robotics_isaac_sim.git<span class="w"> </span>~/robotics_isaac_sim
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h2>
+<section id="moveit2-configuration">
+<h3>MoveIt2 Configuration<a class="headerlink" href="#moveit2-configuration" title="Link to this heading">#</a></h3>
+<p><strong>Controller</strong> (<code class="docutils literal notranslate"><span class="pre">movensys_manipulator_moveit_config/config/moveit_controllers.yaml</span></code>):</p>
+<p>The MoveIt controller manager is configured with a single
+<code class="docutils literal notranslate"><span class="pre">FollowJointTrajectory</span></code> controller named
+<code class="docutils literal notranslate"><span class="pre">movensys_manipulator_arm_controller</span></code> controlling joints 1–6:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">moveit_controller_manager</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">moveit_simple_controller_manager/MoveItSimpleControllerManager</span>
+
+<span class="nt">moveit_simple_controller_manager</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">controller_names</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">movensys_manipulator_arm_controller</span>
+
+<span class="w">  </span><span class="nt">movensys_manipulator_arm_controller</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">action_ns</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">follow_joint_trajectory</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FollowJointTrajectory</span>
+<span class="w">    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">joints</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint1</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint2</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint3</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint5</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">joint6</span>
+</pre></div>
+</div>
+<p><strong>Joint Limits</strong> (<code class="docutils literal notranslate"><span class="pre">movensys_manipulator_moveit_config/config/joint_limits.yaml</span></code>):</p>
+<p>All 6 joints: <code class="docutils literal notranslate"><span class="pre">max_velocity:</span> <span class="pre">3.0</span></code> rad/s, <code class="docutils literal notranslate"><span class="pre">max_acceleration:</span> <span class="pre">3.0</span></code> rad/s<sup>2</sup>.</p>
+<p><strong>Kinematics</strong> (<code class="docutils literal notranslate"><span class="pre">movensys_manipulator_moveit_config/config/kinematics.yaml</span></code>):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">movensys_manipulator_arm</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">kinematics_solver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kdl_kinematics_plugin/KDLKinematicsPlugin</span>
+<span class="w">  </span><span class="nt">kinematics_solver_search_resolution</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.005</span>
+<span class="w">  </span><span class="nt">kinematics_solver_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+</pre></div>
+</div>
+<p><strong>Planning Pipelines</strong>: OMPL, CHOMP, and Pilz Industrial Motion Planner are
+configured as available planners. In Stage 2+, <code class="docutils literal notranslate"><span class="pre">isaac_ros_cumotion</span></code> is
+injected as the default planning pipeline.</p>
+</section>
+<section id="cumotion-configuration">
+<h3>cuMotion Configuration<a class="headerlink" href="#cumotion-configuration" title="Link to this heading">#</a></h3>
+<p><strong>XRDF</strong> (<code class="docutils literal notranslate"><span class="pre">movensys_manipulator_description/urdf/movensys_manipulator.xrdf</span></code>):</p>
+<p>The Extended Robot Description Format file defines cuMotion-specific parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base_link</span></code>: <code class="docutils literal notranslate"><span class="pre">Link0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tool_frames</span></code>: <code class="docutils literal notranslate"><span class="pre">[&quot;Link6&quot;]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cspace.joint_names</span></code>: <code class="docutils literal notranslate"><span class="pre">[&quot;joint1&quot;...&quot;joint6&quot;]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cspace.velocity_limits</span></code>: <code class="docutils literal notranslate"><span class="pre">[3.0,</span> <span class="pre">3.0,</span> <span class="pre">3.0,</span> <span class="pre">3.0,</span> <span class="pre">3.0,</span> <span class="pre">3.0]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cspace.acceleration_limits</span></code>: <code class="docutils literal notranslate"><span class="pre">[3.0,</span> <span class="pre">3.0,</span> <span class="pre">3.0,</span> <span class="pre">3.0,</span> <span class="pre">3.0,</span> <span class="pre">3.0]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cspace.jerk_limits</span></code>: <code class="docutils literal notranslate"><span class="pre">[50,</span> <span class="pre">50,</span> <span class="pre">50,</span> <span class="pre">50,</span> <span class="pre">50,</span> <span class="pre">50]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cspace.retract_config</span></code>: <code class="docutils literal notranslate"><span class="pre">[1.57,</span> <span class="pre">0.0,</span> <span class="pre">1.57,</span> <span class="pre">0.0,</span> <span class="pre">-1.57,</span> <span class="pre">0.0]</span></code></p></li>
+<li><p>Collision geometry: auto-generated spheres for all links with self-collision
+ignore rules for adjacent/skip-one link pairs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">buffer_distance</span></code>: 0.0 m for world collision, 0.002 m for self-collision</p></li>
+</ul>
+<p><strong>cuMotion Planning Plugin</strong>
+(<code class="docutils literal notranslate"><span class="pre">movensys_manipulator_isaac_config/config/isaac_ros_cumotion_planning.yaml</span></code>):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">planning_plugin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">isaac_ros_cumotion_moveit/CumotionPlanner</span>
+<span class="nt">request_adapters</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">  </span><span class="no">default_planner_request_adapters/FixWorkspaceBounds</span>
+<span class="w">  </span><span class="no">default_planner_request_adapters/FixStartStateBounds</span>
+<span class="w">  </span><span class="no">default_planner_request_adapters/FixStartStateCollision</span>
+<span class="w">  </span><span class="no">default_planner_request_adapters/FixStartStatePathConstraints</span>
+<span class="nt">start_state_max_bounds_error</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="nt">num_steps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32</span>
+</pre></div>
+</div>
+</section>
+<section id="nvblox-configuration">
+<h3>NvBlox Configuration<a class="headerlink" href="#nvblox-configuration" title="Link to this heading">#</a></h3>
+<p><strong>Base Config</strong> (<code class="docutils literal notranslate"><span class="pre">movensys_manipulator_isaac_config/config/nvblox_movensys_base.yaml</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">voxel_size</span></code>: 0.01 m</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">global_frame</span></code> / <code class="docutils literal notranslate"><span class="pre">pose_frame</span></code>: <code class="docutils literal notranslate"><span class="pre">world_manipulator</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esdf_mode</span></code>: <code class="docutils literal notranslate"><span class="pre">3d</span></code> (for manipulation)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">integrate_depth_rate_hz</span></code>: 40.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">update_esdf_rate_hz</span></code>: 10.0</p></li>
+</ul>
+<p><strong>Workspace Bounds</strong> (<code class="docutils literal notranslate"><span class="pre">movensys_manipulator_isaac_config/config/movensys_sim.yaml</span></code>):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">static_mapper</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">workspace_bounds_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bounding_box&quot;</span>
+<span class="w">  </span><span class="nt">workspace_bounds_min_corner_x_m</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-0.5</span>
+<span class="w">  </span><span class="nt">workspace_bounds_min_corner_y_m</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-0.4</span>
+<span class="w">  </span><span class="nt">workspace_bounds_min_height_m</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+<span class="w">  </span><span class="nt">workspace_bounds_max_corner_x_m</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">  </span><span class="nt">workspace_bounds_max_corner_y_m</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.4</span>
+<span class="w">  </span><span class="nt">workspace_bounds_max_height_m</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.7</span>
+</pre></div>
+</div>
+<p><strong>Robot Segmenter</strong>
+(<code class="docutils literal notranslate"><span class="pre">movensys_manipulator_isaac_config/config/robot_segmenter_movensys.yaml</span></code>):</p>
+<p>Filters robot pixels from depth images before feeding to NvBlox:</p>
+<ul class="simple">
+<li><p>Input: <code class="docutils literal notranslate"><span class="pre">/image_nvblox/depth</span></code>, <code class="docutils literal notranslate"><span class="pre">/image_nvblox/camera_info</span></code></p></li>
+<li><p>Output: <code class="docutils literal notranslate"><span class="pre">/robot_segmenter/world_depth</span></code> (robot-free depth)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">distance_threshold</span></code>: 0.15 m from collision spheres</p></li>
+</ul>
+</section>
+<section id="camera-configuration">
+<h3>Camera Configuration<a class="headerlink" href="#camera-configuration" title="Link to this heading">#</a></h3>
+<p>Two Intel RealSense camera configs are provided:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config/realsense_mono.yaml</span></code> – RGB-only at <a class="reference external" href="mailto:640x480&#37;&#52;&#48;15fps">640x480<span>&#64;</span>15fps</a> for hand camera
+(Stage 3 AprilTag detection), remapped to <code class="docutils literal notranslate"><span class="pre">/image_hand/rgb</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config/realsense_mono_depth.yaml</span></code> – RGB + depth at <a class="reference external" href="mailto:640x480&#37;&#52;&#48;15fps">640x480<span>&#64;</span>15fps</a> for NvBlox
+camera (Stage 4), remapped to <code class="docutils literal notranslate"><span class="pre">/image_nvblox/rgb</span></code> and <code class="docutils literal notranslate"><span class="pre">/image_nvblox/depth</span></code></p></li>
+</ul>
+</section>
+<section id="cyclonedds-configuration">
+<h3>CycloneDDS Configuration<a class="headerlink" href="#cyclonedds-configuration" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">docker/cyclonedds.xml</span></code> configures:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MaxMessageSize</span></code>: 65500 bytes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SocketReceiveBufferSize</span></code>: 10 MB minimum</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SocketSendBufferSize</span></code>: 2 MB minimum</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MaxAutoParticipantIndex</span></code>: 120</p></li>
+</ul>
+</section>
+<section id="docker-environment">
+<h3>Docker Environment<a class="headerlink" href="#docker-environment" title="Link to this heading">#</a></h3>
+<p>Key environment variables in the Docker container (<code class="docutils literal notranslate"><span class="pre">.env</span></code>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RMW_IMPLEMENTATION</span></code>: <code class="docutils literal notranslate"><span class="pre">rmw_cyclonedds_cpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CYCLONEDDS_URI</span></code>: <code class="docutils literal notranslate"><span class="pre">file:///home/admin/cyclonedds.xml</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONTAINER_NAME</span></code>: <code class="docutils literal notranslate"><span class="pre">movensys_isaac_manipulator_container</span></code></p></li>
+</ul>
+</section>
+<section id="isaac-sim-usd-files">
+<h3>Isaac Sim USD Files<a class="headerlink" href="#isaac-sim-usd-files" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 25.0%" />
+<col style="width: 45.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>USD File</p></th>
+<th class="head"><p>Environment</p></th>
+<th class="head"><p>Target Stages</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">simulation_1_to_3.usd</span></code></p></td>
+<td><p>Simulation</p></td>
+<td><p>Stages 1–3</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hil_1_to_3.usd</span></code></p></td>
+<td><p>Hardware-in-the-Loop</p></td>
+<td><p>Stages 1–3</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">demo_1_to_3.usd</span></code></p></td>
+<td><p>Real-Robot Demo</p></td>
+<td><p>Stages 1–3</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">simulation_4.usd</span></code></p></td>
+<td><p>Simulation</p></td>
+<td><p>Stage 4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
+<section id="entering-the-docker-container">
+<h3>Entering the Docker Container<a class="headerlink" href="#entering-the-docker-container" title="Link to this heading">#</a></h3>
+<p>All Isaac ROS components (cuMotion, AprilTag, NvBlox) run inside the Docker
+container. Enter it with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-u<span class="w"> </span>admin<span class="w"> </span>-it<span class="w"> </span>movensys_isaac_manipulator_container<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>bash<span class="w"> </span>-lc<span class="w"> </span><span class="s1">&#39;source /opt/ros/humble/setup.bash &amp;&amp; \</span>
+<span class="s1">            source /home/admin/ws/install/setup.bash &amp;&amp; \</span>
+<span class="s1">            source /workspaces/isaac_ros-dev/install/setup.bash &amp;&amp; \</span>
+<span class="s1">            exec bash -i&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="stage-1-basic-trajectory-simulation">
+<h3>Stage 1: Basic Trajectory (Simulation)<a class="headerlink" href="#stage-1-basic-trajectory-simulation" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Open Isaac Sim and load <code class="docutils literal notranslate"><span class="pre">~/robotics_isaac_sim/isaac_manipulator/simulation_1_to_3.usd</span></code>,
+then press <strong>Play</strong>.</p></li>
+<li><p><strong>Terminal 1 (host)</strong> – Launch the simulation bridge:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>movensys_manipulator_isaac_config<span class="w"> </span>simulation_action<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Terminal 2 (host)</strong> – Launch MoveIt2:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>movensys_manipulator_moveit_config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>movensys_manipulator_moveit.launch.py<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Terminal 3 (host)</strong> – Execute trajectory test:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>movensys_manipulator_isaac_config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>stage1and2_trajectory.launch.py<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>The script executes: absolute Cartesian moves, relative base-frame moves,
+relative tool-frame moves, joint-space moves, and gripper open/close.</p>
+</li>
+</ol>
+</section>
+<section id="stage-2-cumotion-gpu-planning-simulation">
+<h3>Stage 2: cuMotion GPU Planning (Simulation)<a class="headerlink" href="#stage-2-cumotion-gpu-planning-simulation" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Open Isaac Sim with <code class="docutils literal notranslate"><span class="pre">simulation_1_to_3.usd</span></code> and press <strong>Play</strong>.</p></li>
+<li><p><strong>Terminal 1 (host)</strong> – Launch simulation bridge:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>movensys_manipulator_isaac_config<span class="w"> </span>simulation_action<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Terminal 2 (container)</strong> – Launch cuMotion + MoveIt2:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>movensys_manipulator_isaac_config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>isaac_cumotion.launch.py<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>This launch file dynamically patches the MoveIt2 launch to inject
+<code class="docutils literal notranslate"><span class="pre">isaac_ros_cumotion</span></code> as the default planning pipeline, then starts the
+<code class="docutils literal notranslate"><span class="pre">cumotion_planner_node</span></code> with the XRDF and URDF files.</p>
+</li>
+<li><p><strong>Terminal 3 (host)</strong> – Execute trajectory test:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>movensys_manipulator_isaac_config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>stage1and2_trajectory.launch.py<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="stage-3-apriltag-pick-place-simulation">
+<h3>Stage 3: AprilTag Pick &amp; Place (Simulation)<a class="headerlink" href="#stage-3-apriltag-pick-place-simulation" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Open Isaac Sim with <code class="docutils literal notranslate"><span class="pre">simulation_1_to_3.usd</span></code> and press <strong>Play</strong>.</p></li>
+<li><p><strong>Terminal 1 (host)</strong> – Launch simulation bridge:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>movensys_manipulator_isaac_config<span class="w"> </span>simulation_action<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Terminal 2 (container)</strong> – Launch AprilTag + cuMotion:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>movensys_manipulator_isaac_config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>isaac_apriltag.launch.py<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>This launches the <code class="docutils literal notranslate"><span class="pre">isaac_ros_apriltag</span></code> composable node (subscribed to
+<code class="docutils literal notranslate"><span class="pre">/image_hand/rgb</span></code> and <code class="docutils literal notranslate"><span class="pre">/image_hand/camera_info</span></code>, tag size 0.05 m,
+<code class="docutils literal notranslate"><span class="pre">tag36h11</span></code> family) together with the cuMotion planner.</p>
+</li>
+<li><p><strong>Terminal 3 (host)</strong> – Execute pick-and-place:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>movensys_manipulator_isaac_config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>stage3_apriltag.launch.py<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span><span class="w"> </span>target_spawn:<span class="o">=</span><span class="nb">false</span>
+</pre></div>
+</div>
+<p>The workflow for each of the 4 objects (tags <code class="docutils literal notranslate"><span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">9</span></code>, <code class="docutils literal notranslate"><span class="pre">7</span></code>, <code class="docutils literal notranslate"><span class="pre">11</span></code>):</p>
+<ol class="loweralpha simple">
+<li><p>Move to scan position</p></li>
+<li><p>Visual servo loop: read AprilTag TF, move relative to tool frame,
+repeat until position error &lt; 30 mm and orientation error &lt; 50 mrad</p></li>
+<li><p>Apply tag-to-target offset (<code class="docutils literal notranslate"><span class="pre">x=+0.01</span></code>, <code class="docutils literal notranslate"><span class="pre">y=-0.065</span></code>)</p></li>
+<li><p>Move down 0.21 m, close gripper</p></li>
+<li><p>Move up, travel to box position, move down, open gripper</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="stage-4-nvblox-obstacle-avoidance-simulation">
+<h3>Stage 4: NvBlox Obstacle Avoidance (Simulation)<a class="headerlink" href="#stage-4-nvblox-obstacle-avoidance-simulation" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Open Isaac Sim with <code class="docutils literal notranslate"><span class="pre">simulation_4.usd</span></code> and press <strong>Play</strong>.</p></li>
+<li><p><strong>Terminal 1 (host)</strong> – Launch simulation bridge:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>movensys_manipulator_isaac_config<span class="w"> </span>simulation_action<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Terminal 2 (host)</strong> – Launch camera transform:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>movensys_manipulator_isaac_config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>camera_nvblox_transform.launch.py<span class="w"> </span>simulation:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>This publishes a static TF from <code class="docutils literal notranslate"><span class="pre">world_manipulator</span></code> to
+<code class="docutils literal notranslate"><span class="pre">camera_nvblox_color_optical_frame</span></code> (simulation) or <code class="docutils literal notranslate"><span class="pre">camera_nvblox_link</span></code>
+(real).</p>
+</li>
+<li><p><strong>Terminal 3 (container)</strong> – Launch cuMotion + NvBlox:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>movensys_manipulator_isaac_config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>isaac_cumotion_nvblox.launch.py<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>This launches:</p>
+<ul class="simple">
+<li><p>MoveIt2 with cuMotion as default planner</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">manipulation_container</span></code> with NvBlox composable node (3D ESDF mode)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">robot_segmenter_node</span></code> – filters robot from depth images</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cumotion_planner_node</span></code> with <code class="docutils literal notranslate"><span class="pre">read_esdf_world:</span> <span class="pre">True</span></code> for obstacle-aware
+planning via <code class="docutils literal notranslate"><span class="pre">/nvblox_node/get_esdf_and_gradient</span></code> service</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On RTX 5000-series GPUs, PyTorch requires CUDA 12.8+ but the Docker
+container uses CUDA 12.6. A one-time JIT compilation (~3 minutes) occurs
+on first run. Compiled files are cached for subsequent runs.</p>
+</div>
+</li>
+<li><p><strong>Terminal 4 (host)</strong> – Execute obstacle-avoidance demo:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>movensys_manipulator_isaac_config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>stage4_nvblox.launch.py<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>The demo moves the arm between two poses
+(<code class="docutils literal notranslate"><span class="pre">x=-0.35</span></code> and <code class="docutils literal notranslate"><span class="pre">x=+0.35</span></code>) while cuMotion plans around detected obstacles.</p>
+</li>
+</ol>
+</section>
+<section id="hardware-in-the-loop-mode">
+<h3>Hardware-in-the-Loop Mode<a class="headerlink" href="#hardware-in-the-loop-mode" title="Link to this heading">#</a></h3>
+<p>In HiL mode, the WMX ROS2 stack drives the physical robot while Isaac Sim
+mirrors the motion:</p>
+<ol class="arabic">
+<li><p>Open Isaac Sim with <code class="docutils literal notranslate"><span class="pre">hil_1_to_3.usd</span></code> and press <strong>Play</strong>.</p></li>
+<li><p>Launch the WMX ROS2 manipulator stack on the IPC
+(see <a class="reference internal" href="../getting_started/index.html"><span class="doc">Getting Started</span></a>).</p></li>
+<li><p><strong>IPC</strong> – Launch MoveIt2:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>movensys_manipulator_moveit_config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>movensys_manipulator_moveit.launch.py
+</pre></div>
+</div>
+</li>
+<li><p><strong>IPC</strong> – Execute scenario:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>movensys_manipulator_isaac_config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>stage1and2_trajectory.launch.py
+</pre></div>
+</div>
+<p>Note: <code class="docutils literal notranslate"><span class="pre">use_sim_time</span></code> is not set (defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>) and
+<code class="docutils literal notranslate"><span class="pre">simulation_action</span></code> is <strong>not</strong> launched. The WMX ROS2
+<code class="docutils literal notranslate"><span class="pre">follow_joint_trajectory_server</span></code> handles the action.</p>
+</li>
+</ol>
+</section>
+<section id="utility-tools">
+<h3>Utility Tools<a class="headerlink" href="#utility-tools" title="Link to this heading">#</a></h3>
+<p><strong>URDF Visualization:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>movensys_manipulator_description<span class="w"> </span>movensys_manipulator_rviz.launch.py
+</pre></div>
+</div>
+<p><strong>Joint GUI with Isaac Sim sync:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>movensys_manipulator_description<span class="w"> </span>movensys_manipulator_isaac_gui.launch.py
+</pre></div>
+</div>
+<p>This publishes <code class="docutils literal notranslate"><span class="pre">joint_state_publisher_gui</span></code> output to <code class="docutils literal notranslate"><span class="pre">/joint_command</span></code>
+(remapped from <code class="docutils literal notranslate"><span class="pre">/joint_states</span></code>) for direct Isaac Sim joint control.</p>
+<p><strong>Camera Transform Tuning:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>movensys_manipulator_isaac_config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>camera_transform_tuning.launch.py<span class="w"> </span>use_sim_time:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>A Tkinter GUI (<code class="docutils literal notranslate"><span class="pre">scripts/camera_transform_tuning.py</span></code>) with interactive
+sliders for tuning the <code class="docutils literal notranslate"><span class="pre">world_manipulator</span></code> to camera static transform.
+Publishes to <code class="docutils literal notranslate"><span class="pre">/tf_static</span></code> in real time with configurable step sizes for
+position (meters) and rotation (radians).</p>
+</section>
+</section>
+<section id="how-it-connects-to-wmx-ros2">
+<h2>How It Connects to WMX ROS2<a class="headerlink" href="#how-it-connects-to-wmx-ros2" title="Link to this heading">#</a></h2>
+<p>The Isaac manipulator workspace is designed to work alongside the core WMX ROS2
+packages (<a class="reference internal" href="../packages/packages.html"><span class="doc">Packages</span></a>). The connection point is the
+<code class="docutils literal notranslate"><span class="pre">FollowJointTrajectory</span></code> action interface and the <code class="docutils literal notranslate"><span class="pre">/joint_states</span></code> topic.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id2">
+<caption><span class="caption-text">Mode Comparison</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 40.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>Simulation Mode</p></th>
+<th class="head"><p>HiL / Real Mode</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Action server</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">simulation_action</span></code> node</p></td>
+<td><p>WMX ROS2 <code class="docutils literal notranslate"><span class="pre">follow_joint_trajectory_server</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Action name</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/movensys_manipulator_arm_controller/follow_joint_trajectory</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/movensys_manipulator_arm_controller/follow_joint_trajectory</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Joint state source</p></td>
+<td><p>Isaac Sim (<code class="docutils literal notranslate"><span class="pre">/joint_states</span></code>)</p></td>
+<td><p>WMX ROS2 encoder feedback (<code class="docutils literal notranslate"><span class="pre">/joint_states</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Trajectory execution</p></td>
+<td><p>Per-point publish with time delay to <code class="docutils literal notranslate"><span class="pre">/joint_command</span></code></p></td>
+<td><p>WMX3 cubic spline interpolation via EtherCAT</p></td>
+</tr>
+<tr class="row-even"><td><p>Gripper service</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">simulation_action</span></code> (sets picker position)</p></td>
+<td><p>WMX ROS2 <code class="docutils literal notranslate"><span class="pre">/wmx/set_gripper</span></code> (EtherCAT digital I/O)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Simulator feedback</p></td>
+<td><p>Isaac Sim is the physics engine</p></td>
+<td><p>Isaac Sim mirrors via <code class="docutils literal notranslate"><span class="pre">/isaacsim/joint_command</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Switching between modes</strong> requires no code changes to the scenario
+executables (<code class="docutils literal notranslate"><span class="pre">stage1and2_trajectory_cpp</span></code>, <code class="docutils literal notranslate"><span class="pre">stage3_apriltag_cpp</span></code>, etc.).
+The only differences are:</p>
+<ol class="arabic simple">
+<li><p>Which action server is running (<code class="docutils literal notranslate"><span class="pre">simulation_action</span></code> vs WMX ROS2)</p></li>
+<li><p>Whether <code class="docutils literal notranslate"><span class="pre">use_sim_time</span></code> is set</p></li>
+<li><p>Which Isaac Sim USD file is loaded</p></li>
+</ol>
+<p>The MoveIt2 controller configuration
+(<code class="docutils literal notranslate"><span class="pre">movensys_manipulator_arm_controller</span></code>) uses the same action namespace
+in both modes, so MoveIt2 sends trajectories to whichever action server
+is active.</p>
+<p>For building custom applications that use both workspaces, see
+<a class="reference internal" href="../integration/custom_application.html"><span class="doc">Building Custom Applications</span></a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="examples.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Example Applications</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="intel_manipulator.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Intel Manipulator Integration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">Architecture</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinematic-chain">Kinematic Chain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#source-files">Source Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-flow-simulation-mode">Data Flow (Simulation Mode)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-flow-hil-real-robot">Data Flow (HiL / Real Robot)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware">Hardware</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#software">Software</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-environment-variables">Step 1: Environment Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-clone-repository">Step 2: Clone Repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-run-setup-script">Step 3: Run Setup Script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-build-docker-container">Step 4: Build Docker Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-build-host-workspace">Step 5: Build Host Workspace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-download-3d-assets">Step 6: Download 3D Assets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moveit2-configuration">MoveIt2 Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumotion-configuration">cuMotion Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nvblox-configuration">NvBlox Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#camera-configuration">Camera Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cyclonedds-configuration">CycloneDDS Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-environment">Docker Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isaac-sim-usd-files">Isaac Sim USD Files</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entering-the-docker-container">Entering the Docker Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-1-basic-trajectory-simulation">Stage 1: Basic Trajectory (Simulation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-2-cumotion-gpu-planning-simulation">Stage 2: cuMotion GPU Planning (Simulation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-3-apriltag-pick-place-simulation">Stage 3: AprilTag Pick &amp; Place (Simulation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stage-4-nvblox-obstacle-avoidance-simulation">Stage 4: NvBlox Obstacle Avoidance (Simulation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-in-the-loop-mode">Hardware-in-the-Loop Mode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utility-tools">Utility Tools</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-it-connects-to-wmx-ros2">How It Connects to WMX ROS2</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<footer class="bd-footer">
+<div class="movensys-footer">
+  <div class="movensys-footer__logo">
+    <a href="https://www.movensys.com" target="_blank" rel="noopener">
+      <img src="../_static/movensys_wordmark.png" alt="Movensys" />
+    </a>
+  </div>
+  <div class="movensys-footer__info">
+    <p>&copy; 2026, Movensys Movensys. All rights reserved.</p>
+    
+      <p>Last updated: Feb 20, 2026</p>
+    
+  </div>
+  <div class="movensys-footer__links">
+    <a href="https://www.movensys.com" target="_blank" rel="noopener">Movensys.com</a>
+    <a href="https://www.movensys.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+  </div>
+</div>
+</footer>
+  </body>
+</html>

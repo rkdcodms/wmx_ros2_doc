@@ -1,0 +1,791 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Configure Environment &#8212; WMX ROS2 Documentation 1.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8dc496ed" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/configure_environment';</script>
+    <link rel="icon" href="../_static/movensys_logo.png"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Launch with Mock Hardware" href="mock_hardware.html" />
+    <link rel="prev" title="Create Workspace and Build" href="create_workspace.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <meta name="docbuild:last-update" content="Feb 20, 2026"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/movensys_logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/movensys_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">WMX ROS2 Documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/movensys/wmx_ros2_doc" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/movensys/wmx_ros2_doc" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><div class="sidebar-toc-header">
+  <p class="sidebar-toc-title">Table of Contents</p>
+  <p class="sidebar-toc-subtitle">Contents</p>
+</div></div>
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="system_requirements.html">System Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="system_requirements.html#operating-system">Operating System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_requirements.html#ros2-distribution">ROS2 Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_requirements.html#hardware-requirements">Hardware Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_requirements.html#supported-models-platforms">Supported Models &amp; Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install_ros2.html">Install ROS2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install_ros2.html#ros2-humble-ubuntu-22-04">ROS2 Humble (Ubuntu 22.04)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install_ros2.html#ros2-jazzy-ubuntu-24-04">ROS2 Jazzy (Ubuntu 24.04)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install_ros2.html#verify-ros2">Verify ROS2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install_dependencies.html">Install Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install_dependencies.html#verify-lmx-installation">Verify LMX Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="create_workspace.html">Create Workspace and Build</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Configure Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#verify-installation">Verify Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mock_hardware.html">Launch with Mock Hardware</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mock_hardware.html#test-the-general-node-standalone">Test the General Node (Standalone)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mock_hardware.html#publish-simulated-joint-states">Publish Simulated Joint States</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mock_hardware.html#simulation-environments">Simulation Environments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="physical_hardware.html">Launch with Physical Hardware</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="physical_hardware.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="physical_hardware.html#ethercat-wiring">EtherCAT Wiring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="physical_hardware.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="physical_hardware.html#launch-commands">Launch Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="physical_hardware.html#startup-sequence">Startup Sequence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="physical_hardware.html#verifying-the-connection">Verifying the Connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="physical_hardware.html#gripper-control">Gripper Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="physical_hardware.html#shutdown">Shutdown</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages/packages.html">Packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../packages/wmx_ros2_message.html">wmx_ros2_message</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_message.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_message.html#package-structure">Package Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_message.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_message.html#message-definitions">Message Definitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_message.html#axispose">AxisPose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_message.html#axisvelocity">AxisVelocity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_message.html#axisstate">AxisState</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_message.html#service-definitions">Service Definitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_message.html#setengine">SetEngine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_message.html#setaxis">SetAxis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_message.html#setaxisgearratio">SetAxisGearRatio</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_message.html#building-the-package">Building the Package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../packages/wmx_ros2_package.html">wmx_ros2_package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#package-structure">Package Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#package-dependencies-package-xml">Package Dependencies (package.xml)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#cmake-dependencies-find-package">CMake Dependencies (find_package)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx3-libraries-external">WMX3 Libraries (External)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#nodes">Nodes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#manipulator-state">manipulator_state</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#follow-joint-trajectory-server">follow_joint_trajectory_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx-ros2-general-node">wmx_ros2_general_node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#diff-drive-controller-disabled">diff_drive_controller (Disabled)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#example-application">Example Application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx-ros2-general-example">wmx_ros2_general_example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#launch-files">Launch Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx-ros2-general-launch-py">wmx_ros2_general.launch.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx-ros2-intel-manipulator-cr3a-launch-py">wmx_ros2_intel_manipulator_cr3a.launch.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx-ros2-orin-manipulator-cr3a-launch-py">wmx_ros2_orin_manipulator_cr3a.launch.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx-ros2-diff-drive-controller-launch-py">wmx_ros2_diff_drive_controller.launch.py</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#configuration-files">Configuration Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#intel-manipulator-config-cr3a-yaml">intel_manipulator_config_cr3a.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#orin-manipulator-config-cr3a-yaml">orin_manipulator_config_cr3a.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#diff-drive-controller-config-yaml">diff_drive_controller_config.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../packages/wmx_ros2_package.html#wmx3-parameter-xml-files">WMX3 Parameter XML Files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../packages/wmx_ros2_package.html#building-the-package">Building the Package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../integration/integration.html">Integration Scenarios</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integration/moveit2_integration.html">MoveIt2 Motion Planning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integration/moveit2_integration.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/moveit2_integration.html#architecture">Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/moveit2_integration.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/moveit2_integration.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/moveit2_integration.html#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/moveit2_integration.html#trajectory-execution-details">Trajectory Execution Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../integration/cumotion_integration.html">Isaac cuMotion Accelerated Planning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integration/cumotion_integration.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/cumotion_integration.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/cumotion_integration.html#integration">Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../integration/custom_planner.html">Custom Planner Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_planner.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_planner.html#replacing-the-default-planner">Replacing the Default Planner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_planner.html#interface-requirements">Interface Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_planner.html#constraints-and-limitations">Constraints and Limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_planner.html#python-example-custom-trajectory-generator">Python Example: Custom Trajectory Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_planner.html#standalone-axis-control">Standalone Axis Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_planner.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../integration/custom_application.html">Building Custom Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#available-interfaces">Available Interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#python-example-send-a-trajectory">Python Example: Send a Trajectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#c-example-send-a-trajectory">C++ Example: Send a Trajectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#python-example-read-robot-state">Python Example: Read Robot State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#python-example-monitor-axis-state-and-control-gripper">Python Example: Monitor Axis State and Control Gripper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#using-with-moveit2-python-api">Using with MoveIt2 Python API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#direct-axis-control">Direct Axis Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integration/custom_application.html#adapting-for-different-6-dof-robots">Adapting for Different 6-DOF Robots</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../integration/custom_application.html#configuration-files-to-create-or-modify">Configuration files to create or modify</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../integration/custom_application.html#steps-to-adapt">Steps to adapt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../integration/custom_application.html#what-stays-the-same">What stays the same</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/architecture.html">Architecture &amp; Design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/system_overview.html">System Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/system_overview.html#architecture-diagram">Architecture Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/system_overview.html#package-overview">Package Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/system_overview.html#wmx-ros2-message">wmx_ros2_message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/system_overview.html#wmx-ros2-package">wmx_ros2_package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/system_overview.html#node-roles">Node Roles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/system_overview.html#manipulator-state">manipulator_state</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/system_overview.html#follow-joint-trajectory-server">follow_joint_trajectory_server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/system_overview.html#wmx-ros2-general-node">wmx_ros2_general_node</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/system_overview.html#communication-protocols">Communication Protocols</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/system_overview.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/communication.html">Communication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/communication.html#ros2-topics">ROS2 Topics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/communication.html#published-topics">Published Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/communication.html#subscribed-topics">Subscribed Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/communication.html#ros2-services">ROS2 Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/communication.html#ros2-actions">ROS2 Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/communication.html#wmx3-hardware-communication">WMX3 Hardware Communication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/communication.html#device-initialization">Device Initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/communication.html#wmx3-api-libraries">WMX3 API Libraries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/communication.html#ethercat-communication-cycle">EtherCAT Communication Cycle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/communication.html#gripper-i-o">Gripper I/O</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/flowcharts.html">Flowcharts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/flowcharts.html#launch-sequence">Launch Sequence</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#manipulator-launch-intel-orin">Manipulator Launch (Intel / Orin)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#general-launch">General Launch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#diff-drive-launch">Diff Drive Launch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/flowcharts.html#motion-execution-flow">Motion Execution Flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#moveit2-trajectory-execution">MoveIt2 Trajectory Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#direct-axis-control-flow">Direct Axis Control Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../architecture/flowcharts.html#error-handling-flow">Error Handling Flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#wmx3-device-creation-errors">WMX3 Device Creation Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#trajectory-execution-errors">Trajectory Execution Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#communication-errors">Communication Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#servo-and-axis-control-errors">Servo and Axis Control Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../architecture/flowcharts.html#diff-drive-controller-safety">Diff Drive Controller Safety</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../performance/performance.html">Performance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../performance/performance.html#non-functional-requirements">Non-Functional Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../performance/performance.html#benchmarks">Benchmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../performance/performance.html#test-environment">Test Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../performance/performance.html#measurement-commands">Measurement Commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/ros2_services.html">ROS2 Services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_services.html#custom-service-types">Custom Service Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_services.html#engine-management-services">Engine Management Services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-engine-set-device">/wmx/engine/set_device</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-engine-set-comm">/wmx/engine/set_comm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-engine-get-status">/wmx/engine/get_status</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_services.html#axis-control-services">Axis Control Services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-axis-set-on">/wmx/axis/set_on</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-axis-clear-alarm">/wmx/axis/clear_alarm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-axis-set-mode">/wmx/axis/set_mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-axis-set-polarity">/wmx/axis/set_polarity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-axis-set-gear-ratio">/wmx/axis/set_gear_ratio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-axis-homing">/wmx/axis/homing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_services.html#gripper-service">Gripper Service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_services.html#wmx-set-gripper">/wmx/set_gripper</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_services.html#service-call-workflow">Service Call Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_services.html#error-handling">Error Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_services.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/ros2_topics.html">ROS2 Topics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_topics.html#custom-message-types">Custom Message Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_topics.html#published-topics">Published Topics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#joint-state-feedback">Joint State Feedback</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#simulator-integration-topics">Simulator Integration Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#axis-state-monitoring">Axis State Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_topics.html#subscribed-topics-motion-commands">Subscribed Topics (Motion Commands)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#wmx-axis-velocity">/wmx/axis/velocity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#wmx-axis-position">/wmx/axis/position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#wmx-axis-position-relative">/wmx/axis/position/relative</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_topics.html#differential-drive-topics-optional">Differential Drive Topics (Optional)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#cmd-vel-subscribed">/cmd_vel (Subscribed)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#cmd-vel-check-published">/cmd_vel_check (Published)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#velocity-controller-commands-published">/velocity_controller/commands (Published)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_topics.html#odom-enc-published">/odom_enc (Published)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_topics.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/ros2_actions.html">ROS2 Actions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/ros2_actions.html#followjointtrajectory">FollowJointTrajectory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_actions.html#goal">Goal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_actions.html#result">Result</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_actions.html#feedback">Feedback</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_actions.html#execution-details">Execution Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_actions.html#example-usage">Example Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_actions.html#moveit2-integration">MoveIt2 Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/ros2_actions.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/examples.html">Example Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/examples.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/isaac_manipulator.html">Isaac Sim Manipulator Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/isaac_manipulator.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/isaac_manipulator.html#architecture">Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/isaac_manipulator.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/isaac_manipulator.html#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/isaac_manipulator.html#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/isaac_manipulator.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/isaac_manipulator.html#how-it-connects-to-wmx-ros2">How It Connects to WMX ROS2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/intel_manipulator.html">Intel Manipulator Integration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/intel_manipulator.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/intel_manipulator.html#architecture">Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/intel_manipulator.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/intel_manipulator.html#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/intel_manipulator.html#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/intel_manipulator.html#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/intel_manipulator.html#how-it-connects-to-wmx-ros2">How It Connects to WMX ROS2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment/deployment.html">Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../deployment/deployment.html#source-build">Source Build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../deployment/deployment.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deployment/deployment.html#clone-and-build">Clone and Build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deployment/deployment.html#verify">Verify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deployment/deployment.html#rebuilding">Rebuilding</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../deployment/deployment.html#debian-package-install">Debian Package Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deployment/deployment.html#docker">Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#device-creation-failures">Device Creation Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#ethercat-scan-failures">EtherCAT Scan Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#communication-start-failures">Communication Start Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#joint-states-all-zero">Joint States All Zero</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#servo-alarm-errors">Servo Alarm Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#trajectory-execution-failures">Trajectory Execution Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#gripper-not-responding">Gripper Not Responding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#nodes-not-found">Nodes Not Found</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#build-errors">Build Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/troubleshooting.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Us</a></li>
+</ul>
+
+  </div>
+</nav>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var navItems = document.querySelectorAll(".bd-docs-nav li");
+  navItems.forEach(function(li) {
+    var subList = li.querySelector(":scope > ul");
+    if (subList) {
+      var toggle = document.createElement("span");
+      toggle.className = "toc-toggle";
+      var isCurrent = li.classList.contains("current");
+      toggle.textContent = isCurrent ? "−" : "+";
+      if (!isCurrent) {
+        subList.classList.add("toc-collapsed");
+      }
+      toggle.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        subList.classList.toggle("toc-collapsed");
+        toggle.textContent = subList.classList.contains("toc-collapsed") ? "+" : "−";
+      });
+      li.style.position = "relative";
+      var link = li.querySelector(":scope > a");
+      if (link) {
+        link.after(toggle);
+      }
+    }
+  });
+});
+</script></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Getting Started</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Configure Environment</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="configure-environment">
+<h1>Configure Environment<a class="headerlink" href="#configure-environment" title="Link to this heading">#</a></h1>
+<p>Add the following to your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># ROS2 setup</span>
+<span class="nb">source</span><span class="w"> </span>/opt/ros/<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>/setup.bash
+<span class="nb">source</span><span class="w"> </span>~/wmx_ros2_ws/install/setup.bash
+
+<span class="c1"># ROS2 domain ID (must match across all machines)</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">70</span>
+
+<span class="c1"># Use CycloneDDS middleware</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">RMW_IMPLEMENTATION</span><span class="o">=</span>rmw_cyclonedds_cpp
+</pre></div>
+</div>
+<p>Apply the changes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+<section id="verify-installation">
+<h2>Verify Installation<a class="headerlink" href="#verify-installation" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>pkg<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>wmx
+</pre></div>
+</div>
+<p>Expected:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>wmx_ros2_message
+wmx_ros2_package
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>pkg<span class="w"> </span>executables<span class="w"> </span>wmx_ros2_package
+</pre></div>
+</div>
+<p>Expected:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>wmx_ros2_package follow_joint_trajectory_server
+wmx_ros2_package manipulator_state
+wmx_ros2_package wmx_ros2_general_example
+wmx_ros2_package wmx_ros2_general_node
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="create_workspace.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Create Workspace and Build</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="mock_hardware.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Launch with Mock Hardware</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-installation">Verify Installation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<footer class="bd-footer">
+<div class="movensys-footer">
+  <div class="movensys-footer__logo">
+    <a href="https://www.movensys.com" target="_blank" rel="noopener">
+      <img src="../_static/movensys_wordmark.png" alt="Movensys" />
+    </a>
+  </div>
+  <div class="movensys-footer__info">
+    <p>&copy; 2026, Movensys Movensys. All rights reserved.</p>
+    
+      <p>Last updated: Feb 20, 2026</p>
+    
+  </div>
+  <div class="movensys-footer__links">
+    <a href="https://www.movensys.com" target="_blank" rel="noopener">Movensys.com</a>
+    <a href="https://www.movensys.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+  </div>
+</div>
+</footer>
+  </body>
+</html>
