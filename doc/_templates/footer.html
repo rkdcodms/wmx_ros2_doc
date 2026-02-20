@@ -1,0 +1,18 @@
+{# Custom Movensys footer - overrides the sections/footer.html include #}
+<div class="movensys-footer">
+  <div class="movensys-footer__logo">
+    <a href="https://www.movensys.com" target="_blank" rel="noopener">
+      <img src="{{ pathto('_static/movensys_wordmark.png', 1) }}" alt="Movensys" />
+    </a>
+  </div>
+  <div class="movensys-footer__info">
+    <p>&copy; {{ copyright }} Movensys. All rights reserved.</p>
+    {% if last_updated %}
+      <p>Last updated: {{ last_updated }}</p>
+    {% endif %}
+  </div>
+  <div class="movensys-footer__links">
+    <a href="https://www.movensys.com" target="_blank" rel="noopener">Movensys.com</a>
+    <a href="https://www.movensys.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+  </div>
+</div>

@@ -27,7 +27,7 @@ Prerequisites
 Before building a custom application:
 
 - WMX ROS2 packages are installed and built
-  (see :doc:`../quick_start/install_dependencies`)
+  (see :doc:`../getting_started`)
 - The WMX ROS2 nodes are running (either the manipulator launch or
   the general launch)
 - Your workspace is sourced: ``source ~/wmx_ros2_ws/install/setup.bash``

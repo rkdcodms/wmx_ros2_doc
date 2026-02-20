@@ -216,7 +216,7 @@ Software
 - 3D USD assets from ``robotics_isaac_sim`` repository
 
 For HiL and Real Robot modes, the core WMX ROS2 packages must be built and
-the WMX3 runtime (LMX) installed (see :doc:`../quick_start/install_dependencies`).
+the WMX3 runtime (LMX) installed (see :doc:`../getting_started`).
 
 
 Installation
@@ -686,7 +686,7 @@ mirrors the motion:
 1. Open Isaac Sim with ``hil_1_to_3.usd`` and press **Play**.
 
 2. Launch the WMX ROS2 manipulator stack on the IPC
-   (see :doc:`../quick_start/physical_hardware`).
+   (see :doc:`../getting_started`).
 
 3. **IPC** -- Launch MoveIt2:
 

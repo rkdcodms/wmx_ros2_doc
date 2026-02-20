@@ -1,0 +1,282 @@
+/* ==========================================================================
+   Movensys Brand Theme - WMX ROS2 Documentation
+   Primary brand color: #6DC13F (Movensys Green)
+   ========================================================================== */
+
+:root {
+    --movensys-green: #6DC13F;
+    --movensys-green-dark: #5AA832;
+    --movensys-green-light: #8AD162;
+    --movensys-gray-dark: #4A4D52;
+    --movensys-gray: #6B6E73;
+    --movensys-bg-dark: #2D2D2D;
+}
+
+/* ---------- PyData theme color overrides ---------- */
+html[data-theme="light"] {
+    --pst-color-primary: var(--movensys-green);
+    --pst-color-primary-bg: #f0fae8;
+    --pst-color-link: var(--movensys-green-dark);
+    --pst-color-link-hover: var(--movensys-green);
+}
+
+/* ---------- Header / Navbar ---------- */
+.bd-header {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0.4rem 0;
+    background-color: #fff;
+}
+
+.bd-header .navbar-nav .nav-link:hover,
+.bd-header .navbar-nav .nav-link:focus {
+    color: var(--movensys-green) !important;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.navbar-brand img {
+    max-height: 32px;
+    width: auto;
+}
+
+.navbar-brand .logo__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--movensys-gray-dark);
+}
+
+/* ---------- Left Sidebar (NVIDIA-style flat tree nav) ---------- */
+.bd-sidebar-primary {
+    border-right: 1px solid #e0e0e0;
+    background-color: #fff;
+    padding-top: 0;
+}
+
+/* "Table of Contents" / "Contents" header — matches NVIDIA Isaac ROS */
+.sidebar-toc-header {
+    padding: 1.5rem 1rem 0.75rem 1rem;
+}
+
+.sidebar-toc-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 0.2rem 0;
+}
+
+.sidebar-toc-subtitle {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+/* Hide toctree caption headers in sidebar — keeps sidebar flat like NVIDIA */
+.bd-sidebar-primary .caption-text {
+    display: none;
+}
+
+/* Collapse extra spacing between caption groups */
+.bd-sidebar-primary nav.bd-links .nav.bd-sidenav {
+    padding-top: 0;
+}
+
+/* Sidebar nav links — dark gray like NVIDIA, not green */
+.bd-sidebar-primary nav.bd-links a {
+    color: var(--movensys-gray-dark);
+    font-size: 0.875rem;
+    padding: 0.25rem 0;
+    border-left: none;
+    transition: color 0.15s;
+}
+
+.bd-sidebar-primary nav.bd-links a:hover {
+    color: var(--movensys-green-dark);
+}
+
+.bd-sidebar-primary .sidebar-primary-items__start .active > a,
+.bd-sidebar-primary nav.bd-links .current > a {
+    color: #000;
+    font-weight: 600;
+}
+
+/* Toctree expand/collapse chevrons */
+.bd-sidebar-primary .toctree-checkbox ~ label i {
+    font-size: 0.7rem;
+    color: var(--movensys-gray);
+}
+
+/* ---------- Table of Contents (right sidebar) ---------- */
+.bd-sidebar-secondary .toc-entry a.active {
+    color: var(--movensys-green-dark);
+    border-left-color: var(--movensys-green);
+}
+
+/* ---------- Buttons & Interactive Elements ---------- */
+.btn-primary,
+.bd-search .search-button__default {
+    background-color: var(--movensys-green);
+    border-color: var(--movensys-green);
+}
+
+.btn-primary:hover {
+    background-color: var(--movensys-green-dark);
+    border-color: var(--movensys-green-dark);
+}
+
+/* ---------- Content Links ---------- */
+.bd-content a:not(.btn):not(.headerlink) {
+    color: var(--movensys-green-dark);
+}
+
+.bd-content a:not(.btn):not(.headerlink):hover {
+    color: var(--movensys-green);
+}
+
+/* ---------- Code Blocks ---------- */
+.highlight {
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+}
+
+.bd-content div.highlight pre {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    padding: 1rem;
+}
+
+code.literal {
+    background-color: #f4f8f0;
+    color: var(--movensys-gray-dark);
+    border: 1px solid #dce8d4;
+    border-radius: 3px;
+    padding: 0.1em 0.35em;
+    font-size: 0.875em;
+}
+
+/* ---------- Admonitions ---------- */
+.admonition.note {
+    border-left-color: var(--movensys-green);
+}
+
+.admonition.tip {
+    border-left-color: var(--movensys-green);
+}
+
+.admonition.important {
+    border-left-color: var(--movensys-green-dark);
+}
+
+/* ---------- Footer ---------- */
+.bd-footer {
+    background-color: #fff;
+    color: var(--movensys-gray);
+    border-top: 3px solid var(--movensys-green);
+    padding: 0;
+}
+
+.bd-footer a {
+    color: var(--movensys-green-dark);
+}
+
+.bd-footer a:hover {
+    color: var(--movensys-green);
+}
+
+/* Custom footer content */
+.movensys-footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.movensys-footer__logo img {
+    height: 50px;
+    width: auto;
+    opacity: 0.9;
+}
+
+.movensys-footer__info {
+    text-align: center;
+    flex: 1;
+    font-size: 0.85rem;
+    color: var(--movensys-gray);
+}
+
+.movensys-footer__info a {
+    color: var(--movensys-green-dark);
+    text-decoration: none;
+}
+
+.movensys-footer__info a:hover {
+    color: var(--movensys-green);
+    text-decoration: underline;
+}
+
+.movensys-footer__links {
+    text-align: right;
+    font-size: 0.85rem;
+}
+
+.movensys-footer__links a {
+    color: var(--movensys-green-dark);
+    text-decoration: none;
+    margin-left: 1.5rem;
+}
+
+.movensys-footer__links a:hover {
+    color: var(--movensys-green);
+}
+
+/* ---------- Scrollbar accent ---------- */
+::-webkit-scrollbar-thumb {
+    background-color: var(--movensys-green);
+    border-radius: 4px;
+}
+
+/* ---------- Selection highlight ---------- */
+::selection {
+    background-color: rgba(109, 193, 63, 0.25);
+}
+
+/* ---------- Tables ---------- */
+.bd-content table.docutils {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.bd-content table.docutils th {
+    background-color: #f4f8f0;
+    border-bottom: 2px solid var(--movensys-green);
+    font-weight: 600;
+}
+
+/* ---------- Hide toctree listing on home page (sidebar-only) ---------- */
+.bd-article .toctree-wrapper {
+    display: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .movensys-footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .movensys-footer__links {
+        text-align: center;
+    }
+
+    .movensys-footer__links a {
+        margin: 0 0.75rem;
+    }
+}

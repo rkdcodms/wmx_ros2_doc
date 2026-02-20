@@ -22,12 +22,49 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # -- Options for HTML output -------------------------------------------------
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'pydata_sphinx_theme'
 html_static_path = ['_static']
+html_css_files = ['custom.css']
+
+html_logo = '_static/movensys_logo.png'
+html_favicon = '_static/movensys_logo.png'
+
+html_show_sourcelink = False
+html_last_updated_fmt = '%b %d, %Y'
+
 html_theme_options = {
-    'logo_only': False,
-    'navigation_depth': 3,
-    'collapse_navigation': False,
+    "logo": {
+        "text": "WMX ROS2 Documentation",
+    },
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/movensys/wmx_ros2_doc",
+            "icon": "fa-brands fa-github",
+            "type": "fontawesome",
+        },
+    ],
+    "navbar_align": "left",
+    "navigation_depth": 4,
+    "show_nav_level": 1,
+    "show_toc_level": 2,
+    "collapse_navigation": True,
+    "navbar_start": ["navbar-logo"],
+    "navbar_center": [],
+    "navbar_end": ["search-button", "navbar-icon-links"],
+    "primary_sidebar_end": [],
+    "sidebar_includehidden": True,
+    "footer_start": [],
+    "footer_end": [],
+    "secondary_sidebar_items": ["page-toc"],
+}
+
+html_sidebars = {
+    "**": ["sidebar-toc-header", "sidebar-nav-global"],
+}
+
+html_context = {
+    "default_mode": "light",
 }
 
 # -- Intersphinx mapping (link to ROS2 docs) --------------------------------

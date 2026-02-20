@@ -40,8 +40,7 @@ MoveIt2 must be installed as part of the workspace dependencies:
 
    sudo apt install ros-${ROS_DISTRO}-moveit*
 
-See :doc:`../quick_start/install_dependencies` for the complete dependency
-list.
+See :doc:`../getting_started` for the complete dependency list.
 
 Configuration
 -------------
@@ -72,7 +71,7 @@ Usage
 -----
 
 1. Launch the WMX ROS2 manipulator nodes (see
-   :doc:`../quick_start/physical_hardware`):
+   :doc:`../getting_started`):
 
    .. code-block:: bash
 

@@ -10,64 +10,26 @@ platform over EtherCAT. The current supported robot is the **Dobot CR3A**.
 
 **Key capabilities:**
 
-- Real-time joint control via WMX3 EtherCAT servo drives
-- MoveIt2 trajectory execution through the ``FollowJointTrajectory`` action
-- NVIDIA Isaac cuMotion GPU-accelerated planning support
-- Standalone axis control via ROS2 services and topics
-- Gripper control via EtherCAT digital I/O
-- Multi-simulator output (MoveIt2/RViz, Isaac Sim, Gazebo)
+- Follow the :doc:`getting_started` guide to set up your environment and get running.
+- Browse the :doc:`packages/packages` for ``wmx_ros2_message`` and ``wmx_ros2_package`` details.
+- Explore :doc:`integration/integration` for MoveIt2 and Isaac cuMotion planning.
+- Review the :doc:`architecture/architecture` for system design and communication flow.
+- Compare :doc:`performance/performance` benchmarks across platforms.
+- Check the :doc:`api_reference/api_reference` for ROS2 services, topics, and actions.
+- See :doc:`examples/examples` for real-world application demos.
+- Reference :doc:`deployment/deployment` for source build, Debian, and Docker options.
+- Scan through :doc:`troubleshooting/troubleshooting` for answers to common issues.
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Getting Started
+   :maxdepth: 3
 
-   environment/environment
-   quick_start/quick_start
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Packages
-
+   getting_started
    packages/packages
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Integration Scenarios
-
    integration/integration
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Architecture & Design
-
    architecture/architecture
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Performance
-
    performance/performance
-
-.. toctree::
-   :maxdepth: 2
-   :caption: API Reference
-
    api_reference/api_reference
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Example Applications
-
    examples/examples
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Deployment
-
    deployment/deployment
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Support
-
-   troubleshooting/troubleshooting
+   support
+   about
