@@ -1,5 +1,34 @@
 <nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
   <div class="bd-toc-item navbar-nav">
-    {{ toctree(maxdepth=4, collapse=True, includehidden=True) }}
+    {{ toctree(maxdepth=4, collapse=False, includehidden=True) }}
   </div>
 </nav>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var navItems = document.querySelectorAll(".bd-docs-nav li");
+  navItems.forEach(function(li) {
+    var subList = li.querySelector(":scope > ul");
+    if (subList) {
+      var toggle = document.createElement("span");
+      toggle.className = "toc-toggle";
+      var isCurrent = li.classList.contains("current");
+      toggle.textContent = isCurrent ? "−" : "+";
+      if (!isCurrent) {
+        subList.classList.add("toc-collapsed");
+      }
+      toggle.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        subList.classList.toggle("toc-collapsed");
+        toggle.textContent = subList.classList.contains("toc-collapsed") ? "+" : "−";
+      });
+      li.style.position = "relative";
+      var link = li.querySelector(":scope > a");
+      if (link) {
+        link.parentNode.insertBefore(toggle, link);
+      }
+    }
+  });
+});
+</script>
